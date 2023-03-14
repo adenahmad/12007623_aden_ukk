@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\KelasController;
 use App\Http\Controllers\SppController;
 use Illuminate\Support\Facades\Route;
 
@@ -23,6 +24,7 @@ Route::get('/dashboard', function () {
 })->middleware(['auth'])->name('dashboard');
 
 Route::resource('spp', SppController::class);
+Route::resource('kelas', KelasController::class);
 // route untuk logout
 Route::get('/logout', [App\Http\Controllers\Auth\LoginController::class, 'logout']);
 

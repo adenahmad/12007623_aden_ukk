@@ -34,7 +34,11 @@
         }
 
         body {
-            background-color:rgb(255, 255, 255);
+            background-image: url('assets2/img/wk.png');
+            height: 50%;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
         }
         @media screen and (max-width: 500px) {
            .col-md-20 {
