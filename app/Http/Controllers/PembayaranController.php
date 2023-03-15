@@ -54,7 +54,7 @@ class PembayaranController extends Controller
             'tahun_dibayar' => 'required',
             'id_spp' => 'required',
             'tunggakan' => 'required',
-            'jumlah_bayar' => 'required',
+            'jumlah_dibayar' => 'required',
         ]);
         
         Pembayaran::create($request->all());
@@ -105,7 +105,7 @@ class PembayaranController extends Controller
             'tahun_dibayar' => 'required',
             'id_spp' => 'required',
             'tunggakan' => 'required',
-            'jumlah_bayar' => 'required',
+            'jumlah_dibayar' => 'required',
         ]);
 
         Pembayaran::find($id)->update($request->all());
@@ -128,10 +128,10 @@ class PembayaranController extends Controller
             ->with('success', 'Berhasil Hapus !');
     }
 
-    public function exportexcel()
-    {
-      return Excel::download(new EmployeeExport, 'pembayaran.xlsx');
-    }
+    // public function exportexcel()
+    // {
+    //   return Excel::download(new EmployeeExport, 'pembayaran.xlsx');
+    // }
 
    
 }

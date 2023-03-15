@@ -49,10 +49,10 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Nis</strong>
-                <select name="id_siswa" id="" class="form-control">
-                    <option selected >pilih nis</option>
+                <select name="id_siswa" id="id_siswa" class="form-control" >
+                    <option selected >pilih siswa</option>
                     @foreach($siswa as $row)
-                        <option {{ $row->id == old('id_siswa') ? 'selected' : '' }} value="{{$row->id}}">
+                        <option data-nama="{{ $row->nama  }}" data-kelas="{{ $row->id_kelas  }}" {{ $row->nis == old('id_siswa') ? 'selected' : '' }} value="{{$row->nis}}" >
                         {{ $row->nis}}
                         </option>
                     @endforeach
@@ -62,25 +62,13 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Nama</strong>
-                <select name="nama_siswa" id="" class="form-control">
-                    <option selected >pilih Nama siswa</option>
-                    @foreach($siswa as $row)
-                        <option {{ $row->id == old('nama_siswa') ? 'selected' : '' }} value="{{$row->id}}">
-                        {{ $row->nama}}
-                        </option>
-                    @endforeach
-                </select>
+                <input type="text" name="nama_siswa"  id="nama_siswa" class="form-control">
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Kelas</strong>
-                <select name="nama_kelas" id="" class="form-control">
-                    <option selected >Pilih Kelas</option>
-                    <option value="X" class="form-control">X</option>
-                    <option value="XI" class="form-control">XI</option>
-                    <option value="XII" class="form-control">XII</option>
-                </select>
+                <input type="text" name="nama_kelas"  id="nama_kelas"  class="form-control">
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
@@ -101,6 +89,18 @@
     </div>
 
 </form>
+<script>
+    const id_siswa = document.querySelector('#id_siswa')
+    const nama_siswa = document.querySelector('#nama_siswa')
+    const nama_kelas = document.querySelector('#nama_kelas')
+
+    id_siswa.addEventListener('change', (e) => {
+        const nama = e.target.options[e.target.selectedIndex].getAttribute('data-nama')
+        nama_siswa.value = nama
+        const id_kelas = e.target.options[e.target.selectedIndex].getAttribute('data-kelas')
+        nama_kelas.value = id_kelas
+    })
+</script>
 @endif
 @endif
 @endsection

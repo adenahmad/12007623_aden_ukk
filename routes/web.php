@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\HistoriController;
 use App\Http\Controllers\KelasController;
 use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\PembayaranController;
@@ -35,6 +36,7 @@ Route::resource('siswa', SiswaController::class);
 Route::resource('pembayaran', PembayaranController::class);
 Route::resource('tunggakan', TunggakanController::class);  
 Route::resource('laporan', LaporanController::class);  
+Route::resource('histori', HistoriController::class);  
 
 // route untuk logout
 Route::get('/logout', [App\Http\Controllers\Auth\LoginController::class, 'logout']);

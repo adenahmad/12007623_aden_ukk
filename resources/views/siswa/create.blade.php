@@ -79,27 +79,36 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Tahun Angkatan</strong>
-                <select name="tahun" id="" class="form-control">
+                <select name="tahun" id="tahun" class="form-control" >
+                    <option selected >pilih Tahun Angkatan</option>
+                    @foreach($tahun as $row)
+                        <option data-tahun="{{ $row->nominal  }}" {{ $row->tahun == old('tahun') ? 'selected' : '' }} value="{{$row->tahun}}" >
+                        {{ $row->tahun}}
+                        </option>
+                    @endforeach
+                </select>
+                {{-- <select name="tahun" id="" class="form-control">
                     <option selected >pilih tahun angkatan</option>
                     @foreach($tahun as $row)
                         <option {{ $row->tahun == old('tahun') ? 'selected' : '' }} value="{{$row->tahun}}">
                         {{ $row->tahun}}
                         </option>
                     @endforeach
-                </select>
+                </select> --}}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Id Spp</strong>
-                <select name="id_spp" id="" class="form-control">
+                <input type="text" name="id_spp" id="id_spp" class="form-control">
+                {{-- <select name="id_spp" id="" class="form-control">
                     <option selected >pilih nominal</option>
                     @foreach($spp as $row)
                         <option {{ $row->nominal == old('id_spp') ? 'selected' : '' }} value="{{$row->nominal}}">
                         {{ $row->nominal}}
                         </option>
                     @endforeach
-                </select>
+                </select> --}}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
@@ -123,6 +132,15 @@
 </form>
 @endif
 @endif
+<script>
+    const tahun = document.querySelector('#tahun')
+    const id_spp = document.querySelector('#id_spp')
+
+    tahun.addEventListener('change', (e) => {
+        const nominal = e.target.options[e.target.selectedIndex].getAttribute('data-tahun')
+        id_spp.value = nominal
+    })
+</script>
 @endsection
 
 @section('title')

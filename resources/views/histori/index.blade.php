@@ -7,9 +7,6 @@
                 <h2>Data Histori Spp</h2>
             </div>
             <hr>
-            {{-- <div class="pull-right" style="float: right;">
-                <a class="btn btn-success" href="{{ route('pembayaran.create') }}">Tambah Pembayaran  <i class="fa-sharp fa-solid fa-add"></i></a>
-            </div> --}}
         </div>
     </div>
     <br>
@@ -36,7 +33,6 @@
                             <th>Tahun Dibayar</th>
                             <th>Id Spp</th>
                             <th>Jumlah Bayar</th>
-                            {{-- <th width="112px">Action</th> --}}
                         </tr>
                     </thead>
                     <tbody>
@@ -50,18 +46,6 @@
                                 <td>{{ $histori->tahun_dibayar }}</td>
                                 <td>Rp.{{ $histori->id_spp }}</td>
                                 <td>Rp.{{ $histori->jumlah_bayar }}</td>
-                                {{-- <td>
-                                    <form action="{{ route('histori.destroy',$histori->id) }}" method="POST">
-                                        <a class="btn btn-primary" href="{{ route('histori.edit',$histori->id) }}">
-                                            <i class="fa-solid fa-pen"> </i>
-                                        </a>
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-danger">
-                                            <i class="fa-solid fa-trash-can"></i>
-                                        </button>
-                                    </form>
-                                </td> --}}
                             </tr>
                         @endforeach
                     </tbody> 

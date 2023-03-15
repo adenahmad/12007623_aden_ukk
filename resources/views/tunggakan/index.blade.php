@@ -106,13 +106,11 @@
                         {{-- {{dd($siswa)}} --}}
                             <tr>
                                 <td>{{ ++$i }}</td>
-                                <td>{{ $data->siswa->nis }}</td>
-                                <td>{{ $data->siswa->nama_siswa }}</td>
-                                <td>{{ $data->siswa->kelas->nama_kelas }}</td>
-                                <td>{{ $data->sisa_bulan }} bulan</td>
-                                <td>Rp {{ number_format($data->sisa_tunggakan, 0, ',', '.') }}</td>
-                                <td>
-                               
+                                <td>{{ $tunggakan->id_siswa }}</td>
+                                <td>{{ $tunggakan->nama_siswa }}</td>
+                                <td>{{ $tunggakan->nama_kelas }}</td>
+                                <td>{{ $tunggakan->sisa_bulan }} bulan</td>
+                                <td>Rp {{ ($tunggakan->sisa_tunggakan) }}</td>
                                 <td>
                                     <form action="{{ route('tunggakan.destroy',$tunggakan->id) }}" method="POST">
                                         <a class="btn btn-primary" href="{{ route('tunggakan.edit',$tunggakan->id) }}">

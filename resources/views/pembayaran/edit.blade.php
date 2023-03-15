@@ -1,19 +1,19 @@
 @extends('layouts.master')
 @section('content')
 @if(Auth::user()->role !='Admin')
-                <!-- Begin Page Content -->
-                <div class="container-fluid">
+    <!-- Begin Page Content -->
+    <div class="container-fluid">
 
-                    <!-- 404 Error Text -->
-                    <div class="text-center" style="margin-top:200px;">
-                        <div class="error mx-auto" data-text="404">404</div>
-                        <p class="lead text-gray-800 mb-5">Page Not Found</p>
-                        <p class="text-gray-500 mb-0">It looks like you found a glitch in the matrix...</p>
-                        <a href="{{asset('dashboard')}}">&larr; Back to Dashboard</a>
-                    </div>
+        <!-- 404 Error Text -->
+        <div class="text-center" style="margin-top:200px;">
+            <div class="error mx-auto" data-text="404">404</div>
+            <p class="lead text-gray-800 mb-5">Page Not Found</p>
+            <p class="text-gray-500 mb-0">It looks like you found a glitch in the matrix...</p>
+            <a href="{{asset('dashboard')}}">&larr; Back to Dashboard</a>
+        </div>
 
-                </div>
-                <!-- /.container-fluid -->
+    </div>
+    <!-- /.container-fluid -->            
 @endif
 
 @if(Auth::user()->role !='Petugas')
@@ -59,12 +59,6 @@
                 <input class="form-control" type="text" name="nisn"  value="{{$pembayaran->nisn}}">
             </div>
         </div>
-        {{-- <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Nis</strong>
-                <input class="form-control" type="number" name="nis" value="{{$pembayaran->nis}}">          
-            </div>
-        </div> --}}
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Tanggal Bayar</strong>
@@ -86,7 +80,6 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Id Spp</strong>
-                {{-- <input class="form-control" type="number" name="id_spp" placeholder="Isi id spp">           --}}
                 <select name="id_spp" id="" class="form-control">
                     <option selected >{{$pembayaran->id_spp}}</option>
                     @foreach($spp as $row)
@@ -106,7 +99,7 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Jumlah Bayar</strong>
-                <input class="form-control" type="text" name="jumlah_bayar"  value="{{$pembayaran->jumlah_bayar}}">          
+                <input class="form-control" type="text" name="jumlah_dibayar"  value="{{$pembayaran->jumlah_dibayar}}">          
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12 text-center">

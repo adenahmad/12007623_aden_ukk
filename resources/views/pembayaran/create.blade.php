@@ -88,7 +88,6 @@
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Id Spp</strong>
-                {{-- <input class="form-control" type="number" name="id_spp" placeholder="Isi id spp">           --}}
                 <select name="id_spp" id="" class="form-control">
                     <option selected >pilih Spp</option>
                     @foreach($spp as $row)
@@ -108,7 +107,7 @@
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Jumlah Bayar</strong>
-                    <input class="form-control" type="text" name="jumlah_bayar" placeholder="Isi jumlah Bayar">          
+                    <input class="form-control" type="text" name="jumlah_dibayar" placeholder="Isi jumlah Bayar">          
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12 text-center">

@@ -41,7 +41,8 @@ class TunggakanController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+    {        
+            // dd($request->all());
             $validatedData = $request->validate([
                 'id_siswa' => ['required', 'string'],
                 'nama_siswa' => ['required', 'string'],
@@ -49,7 +50,7 @@ class TunggakanController extends Controller
                 'bulan_tunggakan' => ['required', 'string'],
                 'total_tunggakan' => ['string'],
             ]);
-            $validatedData['sisa_bulan'] = $request->bulan;
+            $validatedData['sisa_bulan'] = $request->bulan_tunggakan;
             $validatedData['sisa_tunggakan'] = $request->total_tunggakan;
             Tunggakan::create($validatedData);
         return redirect()->route('tunggakan.index')
