@@ -16,6 +16,8 @@ class CreateTunggakansTable extends Migration
         Schema::create('tunggakans', function (Blueprint $table) {
             $table->id();
             $table->string('id_siswa');
+            $table->string('nama_siswa');
+            $table->string('nama_kelas');
             $table->string('bulan_tunggakan');
             $table->string('total_tunggakan');
             $table->string('sisa_tunggakan');

@@ -3,9 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-
-class LoginController extends Controller
+use App\Models\Pembayaran;
+class HistoriController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +13,9 @@ class LoginController extends Controller
      */
     public function index()
     {
-        return view('auth.index');
+        $historis = Pembayaran::orderBy('created_at', 'desc')->get();
+        return view('histori.index', compact('historis'))
+            ->with('i', (request()->input('histori', 1) - 1) * 5);
     }
 
     /**
@@ -35,21 +36,7 @@ class LoginController extends Controller
      */
     public function store(Request $request)
     {
-    
-        $data = [
-            'email' => $request->email,
-            'password' => $request->password,
-        ];
-        $user = Auth::attempt($data);
-        if (!$user) {
-            return redirect()->back()->with('loginError', 'email atau password salah..!!');
-        }
-
-        if (Auth::user()->role == 'Admin') {
-            return redirect()->route('home')->with('success', 'Welkam admin');
-        } elseif (Auth::user()->role == 'Operator') {
-            return redirect()->route('home')->with('success', 'Welkam operator');
-        } 
+        //
     }
 
     /**
@@ -94,7 +81,6 @@ class LoginController extends Controller
      */
     public function destroy($id)
     {
-        Auth::logout();
-        return redirect()->route('auth.login')->with('success', 'Logout berhasil');
+        //
     }
 }

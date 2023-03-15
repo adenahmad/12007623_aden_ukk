@@ -11,8 +11,10 @@ class Tunggakan extends Model
     protected $table = 'tunggakans';
     protected $fillable = [
         'id_siswa',
-        'bulan_nunggak',
+        'nama_siswa',
+        'nama_kelas',
+        'bulan_tunggakan',
         'total_tunggakan',
-       'sisa_tunggakan',
-       'sisa_bulan'];
+        'sisa_tunggakan',
+        'sisa_bulan'];
 }

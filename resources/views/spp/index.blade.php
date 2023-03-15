@@ -27,6 +27,7 @@
                     <hr>
                     <div class="pull-right" style="float: right;">
                         <a class="btn btn-success" href="{{ route('spp.create') }}">Tambah SPP  <i class="fa-sharp fa-solid fa-add"></i></a>
+                        {{-- <a class="btn btn-primary" href="{{ route('spp.createPDF') }}">EXPORT  <i class="fa-sharp fa-solid fa-add"></i></a> --}}
                     </div>
                 </div>
             </div>

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\SPP;
+use Barryvdh\DomPDF\Facade\Pdf;
+
 
 class SppController extends Controller
 {
@@ -108,5 +110,15 @@ class SppController extends Controller
         return redirect()->route('spp.index')
             ->with('success', 'Berhasil Hapus !');
     }
+
+    public function createPDF() {
+        // // retreive all records from db
+        // $data = SPP::all();
+        // // share data to view//
+        // view()->share('spp',$data);
+        // $pdf = PDF::loadView('spp', $data);
+        // // download PDF file with download method
+        // return $pdf->download('spp.pdf');
+      }
 
 }

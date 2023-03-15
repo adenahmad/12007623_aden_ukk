@@ -22,7 +22,7 @@ class CreateSiswasTable extends Migration
             $table->char('no_telp');
             $table->string('tahun');
             $table->string('id_spp');
-            $table->string('is_kelas');
+            $table->string('id_kelas');
             $table->timestamps();
         });
     }
