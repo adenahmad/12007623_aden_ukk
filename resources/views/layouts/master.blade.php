@@ -11,6 +11,7 @@
     <title>SPP- @yield('title')</title>
     <link href="{{asset('assets2/img/logo.png')}}" rel="icon">
     <!-- Custom fonts for this template-->
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="{{ asset('assets2/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
@@ -44,7 +45,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="{{ request()->is(strtolower(Auth::user()->role)) ? 'active' : '' }} nav-item">
-                <a class="nav-link" href="/dashboard">
+                <a class="nav-link" href="/home_master">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard {{ Auth::user()->role }}</span></a>
             </li>
@@ -90,20 +91,20 @@
                     <span>Kelas</span>
                 </a>
             </li>
-           
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="/laporan">
-                    <i class="fa-solid fa-book"></i>
-                    <span>Laporan Spp</span>
-                </a>
-            </li>
-            <li class="nav-item">
+            <li class="nav-item" hidden>
                 <a class="nav-link collapsed" href="/tunggakan">
                     <i class="fa-solid fa-money-check"></i>
                     <span>Tunggakan Spp</span>
                 </a>
             </li>
             @endif
+            
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="/laporan">
+                    <i class="fa-solid fa-book"></i>
+                    <span>Laporan Spp</span>
+                </a>
+            </li>
             @endif
             <li class="nav-item">
                 <a class="nav-link collapsed" href="/histori">
@@ -214,6 +215,7 @@
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/css/bootstrap-select.min.css" />
     <script>
         $(document).ready(function() {
             $('#dataTable').DataTable();
@@ -234,6 +236,17 @@
         var bulanarray=new Array("Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","Nopember","Desember");
         document.getElementById("tanggalwaktu").innerHTML = hariarray[hari]+" "+tanggal+" "+bulanarray[bulan]+" "+tahun+" Jam " + ((tw.getHours() < 10) ? "0" : "") + tw.getHours() + ":" + ((tw.getMinutes() < 10)? "0" : "") + tw.getMinutes() + (" W.I.B ");
         </script>
+        <script>
+            var tw = new Date();
+            if (tw.getTimezoneOffset() == 0) (a=tw.getTime() + ( 7 *60*60*1000))
+            var tahun= tw.getFullYear ();
+            // var hari= tw.getDay ();
+            // var bulan= tw.getMonth ();
+            // var tanggal= tw.getDate ();
+            // var hariarray=new Array("Minggu,","Senin,","Selasa,","Rabu,","Kamis,","Jum'at,","Sabtu,");
+            // var bulanarray=new Array("Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","Nopember","Desember");
+            document.getElementById("waktu").innerHTML = tahun;
+            </script>
 </body>
 
 </html>

@@ -1,6 +1,7 @@
 @extends('layouts.master')
 @section('content')
 @if(Auth::user()->role !='Admin')
+@if(Auth::user()->role !='Petugas')
     <!-- Begin Page Content -->
     <div class="container-fluid">
 
@@ -15,8 +16,7 @@
     </div>
     <!-- /.container-fluid -->            
 @endif
-
-@if(Auth::user()->role !='Petugas')
+@endif
 @if(Auth::user()->role !='Siswa')
 <div class="row">
     <div class="col-lg-12 margin-tb">
@@ -55,38 +55,27 @@
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Nisn</strong>
-                <select name="nisn" id="id_nis" class="form-control">
-                    <option selected >{{$pembayaran->id_spp}}</option>
+                <strong>Nis</strong>
+                <select name="nis" id="id_nis" class="form-control">
+                    <option selected >{{$pembayaran->nis}}</option>
                     @foreach($siswa as $row)
-                        <option data-spp="{{ $row->id_spp }}" data-total="{{ $row->id_spp }}"  {{ $row->nisn == old('nisn') ? 'selected' : '' }} value="{{$row->nisn}}">
-                        {{ $row->nisn}}
+                        <option data-spp="{{ $row->id_spp }}" data-total="{{ $row->id_spp }}" data-nama="{{ $row->nama }}"  {{ $row->nis == old('nis') ? 'selected' : '' }} value="{{$row->nis}}">
+                        {{ $row->nis}}
                         </option>
                     @endforeach
-                    {{-- @foreach($spp as $row)
-                        <option {{ $row->id_spp == old('id_spp', $pembayaran->id_spp)  ? 'selected' : '' }} value="{{$row->nisn}}">
-                        {{ $row->nisn}}
-                        </option>
-                    @endforeach --}}
                 </select>
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
+                <strong>Nama Siswa</strong>
+                <input class="form-control" type="text" name="nama" id="siswa" value="{{$pembayaran->nama}}">          
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
                 <strong>Tanggal Bayar</strong>
-                <input class="form-control" type="text" name="tgl_bayar"  value="{{$pembayaran->tgl_bayar}}">          
-            </div>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Bulan  DiBayar</strong>
-                <input class="form-control" type="text" name="bulan_dibayar"  value="{{$pembayaran->bulan_dibayar}}">          
-            </div>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Tahun Dibayar</strong>
-                <input class="form-control" type="text" name="tahun_dibayar"  value="{{$pembayaran->tahun_dibayar}}">          
+                <input class="form-control" type="date" name="tgl_bayar"  value="{{$pembayaran->tgl_bayar}}">          
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
@@ -98,7 +87,7 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Tunggakan</strong>
-                <input class="form-control" type="text" name="tunggakan"  value="{{$pembayaran->tunggakan}}">          
+                <input class="form-control" type="text" name="tunggakan_bulan"  value="{{$pembayaran->tunggakan_bulan}}">          
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
@@ -114,11 +103,12 @@
 
 </form>
 @endif
-@endif
 <script>
     const id_nis = document.querySelector('#id_nis')
     const spps = document.querySelector('#spps')
     const cekbayar = document.querySelector('#cekbayar')
+    const siswa = document.querySelector('#siswa')
+
     id_nis.addEventListener('change', (e) => {
         const id_spp = e.target.options[e.target.selectedIndex].getAttribute('data-spp')
         spps.value = id_spp
@@ -126,6 +116,10 @@
     id_nis.addEventListener('change', (e) => {
         const id_spp = e.target.options[e.target.selectedIndex].getAttribute('data-total')
         cekbayar.value = id_spp
+    })
+    id_nis.addEventListener('change', (e) => {
+        const nama = e.target.options[e.target.selectedIndex].getAttribute('data-nama')
+        siswa.value = nama
     })
 </script>
 @endsection

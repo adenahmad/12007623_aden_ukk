@@ -11,11 +11,10 @@ class Pembayaran extends Model
     protected $table = 'pembayarans';
     protected $fillable = [
         'id_petugas',
-        'nisn',
+        'nis',
+        'nama',
         'tgl_bayar',
-        'bulan_dibayar',
-        'tahun_dibayar',
         'id_spp',
-        'tunggakan',
+        'tunggakan_bulan',
         'jumlah_dibayar'];
 }

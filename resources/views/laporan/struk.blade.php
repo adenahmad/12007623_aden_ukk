@@ -19,6 +19,7 @@
 </head>
 <body>
     @if(Auth::user()->role !='Admin')
+    @if(Auth::user()->role !='Petugas')
     <center>
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
@@ -36,76 +37,73 @@
 
     </center>
 @endif
+@endif
 @if(Auth::user()->role !='Siswa')
-@if(Auth::user()->role !='Petugas')
-    <center><table align="center" cellpadding="5">
-        <h3>Struk Spp Wikrama</h3>
-    @foreach ($laporans as $laporan)
-        <tr>
-        <td><b>ID Petugas</b></td>
-        <td>&nbsp;&nbsp;&nbsp;</td>
-        <td>:</td>
-        <td>&nbsp;&nbsp;&nbsp;</td>
-        <td>{{ $laporan->id_petugas }}</td>
-    </tr>
-    <tr>
-        <td><b>Nisn</b></td>
-        <td>&nbsp;&nbsp;&nbsp;</td>
-        <td>:</td>
-        <td>&nbsp;&nbsp;&nbsp;</td>
-        <td>{{ $laporan->nisn }}</td>
-    </tr>
-    <tr>
-        <td><b>Tanggal Bayar</b></td>
-        <td>&nbsp;&nbsp;&nbsp;</td>
-        <td>:</td>
-        <td>&nbsp;&nbsp;&nbsp;</td>
-        <td>{{ $laporan->tgl_bayar}}</td>
-    </tr>
-    <tr>
-        <td><b>Bulan Bayar</b></td>
-        <td>&nbsp;&nbsp;&nbsp;</td>
-        <td>:</td>
-        <td>&nbsp;&nbsp;&nbsp;</td>
-        <td>{{ $laporan->bulan_dibayar}}</td>
-    </tr>
-    <tr>
-        <td><b>Tahun Bayar</b></td>
-        <td>&nbsp;&nbsp;&nbsp;</td>
-        <td>:</td>
-        <td>&nbsp;&nbsp;&nbsp;</td>
-        <td>{{ $laporan->tahun_dibayar}}</td>
-    </tr>
-    <tr>
-        <td><b>Tunggakan</b></td>
-        <td>&nbsp;&nbsp;&nbsp;</td>
-        <td>:</td>
-        <td>&nbsp;&nbsp;&nbsp;</td>
-        <td>{{ $laporan->tunggakan}}</td>
-    </tr>
-    <tr>
-        <td><b>Id Spp</b></td>
-        <td>&nbsp;&nbsp;&nbsp;</td>
-        <td>:</td>
-        <td>&nbsp;&nbsp;&nbsp;</td>
-        <td>{{ $laporan->id_spp}}</td>
-    </tr>
-    <tr>
-        <td><b>Jumlah Bayar</b></td>
-        <td>&nbsp;&nbsp;&nbsp;</td>
-        <td>:</td>
-        <td>&nbsp;&nbsp;&nbsp;</td>
-        <td>{{ $laporan->jumlah_bayar}}</td>
-    </tr>
-   
-    @endforeach
-</table>
-</center>
+<div class="card">
+        <center>
+            <img src="{{asset('assets2/img/logo.png')}}" alt="" width="100px" style="margin-top:80px;">
+                {{-- <p>spp wikrama</p> --}}
+                
+        </center><br>
+            <center><table align="center" cellpadding="5">
+                <h3>Struk Spp Wikrama</h3>
+                <tr>
+                <td><b>ID Petugas</b></td>
+                <td>&nbsp;&nbsp;&nbsp;</td>
+                <td>:</td>
+                <td>&nbsp;&nbsp;&nbsp;</td>
+                <td>{{ $laporans->id_petugas }}</td>
+            </tr>
+            <tr>
+                <td><b>Nis</b></td>
+                <td>&nbsp;&nbsp;&nbsp;</td>
+                <td>:</td>
+                <td>&nbsp;&nbsp;&nbsp;</td>
+                <td>{{ $laporans->nis }}</td>
+            </tr>
+            <tr>
+                <td><b>Nama</b></td>
+                <td>&nbsp;&nbsp;&nbsp;</td>
+                <td>:</td>
+                <td>&nbsp;&nbsp;&nbsp;</td>
+                <td>{{ $laporans->nama }}</td>
+            </tr>
+            <tr>
+                <td><b>Tanggal Bayar</b></td>
+                <td>&nbsp;&nbsp;&nbsp;</td>
+                <td>:</td>
+                <td>&nbsp;&nbsp;&nbsp;</td>
+                <td>{{ $laporans->tgl_bayar}}</td>
+            </tr>
+            <tr>
+                <td><b>Bulan Bayar</b></td>
+                <td>&nbsp;&nbsp;&nbsp;</td>
+                <td>:</td>
+                <td>&nbsp;&nbsp;&nbsp;</td>
+                <td>bulan {{ $laporans->tunggakan_bulan}} </td>
+            </tr>
+            <tr>
+                <td><b>Id Spp</b></td>
+                <td>&nbsp;&nbsp;&nbsp;</td>
+                <td>:</td>
+                <td>&nbsp;&nbsp;&nbsp;</td>
+                <td>{{ $laporans->id_spp}}</td>
+            </tr>
+            <tr>
+                <td><b>Jumlah Bayar</b></td>
+                <td>&nbsp;&nbsp;&nbsp;</td>
+                <td>:</td>
+                <td>&nbsp;&nbsp;&nbsp;</td>
+                <td>{{ $laporans->jumlah_dibayar}}</td>
+            </tr>
+        </table>
+        </center>
 
-<center>
-<p>= = = = = = = = = = = = = = = = = = = = = =</p><br>	
-<h3>TERIMA KASIH </h4><br>
-</center>
+        <center>
+        <p>= = = = = = = = = = = = = = = = = = = = = =</p><br>	
+        <h3>TERIMA KASIH </h4><br>
+        </center>
+</div>
 
 <script type="text/javascript">
 window.print();
@@ -144,7 +142,6 @@ window.print();
     <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
 
-@endif
 @endif
 </body>
 </body>

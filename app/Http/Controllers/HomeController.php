@@ -1,10 +1,16 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Pembayaran;
-use Illuminate\Http\Request;
 
-class LaporanController extends Controller
+use Illuminate\Http\Request;
+use App\Models\SPP;
+use App\Models\User;
+use App\Models\Siswa;
+use App\Models\Pembayaran;
+use App\Models\Tunggakan;
+
+
+class HomeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,10 +19,18 @@ class LaporanController extends Controller
      */
     public function index()
     {
-        $laporans = Pembayaran::orderBy('created_at', 'desc')->get();
-        return view('laporan.index', compact('laporans'))
-            ->with('i', (request()->input('laporan', 1) - 1) * 5);
+        $spp = SPP::count();
+        $petugas = User::count();
+        $siswa = Siswa::count();
+        $pembayaran = Pembayaran::count();
+        $laporan = Pembayaran::count();
+        $tunggakan = Tunggakan::count();
+        $histori = Pembayaran::count();
+    
+        return view('home_master.index', compact('spp','petugas','siswa','pembayaran','laporan','tunggakan','histori'));
     }
+
+
     /**
      * Show the form for creating a new resource.
      *
@@ -81,20 +95,5 @@ class LaporanController extends Controller
     public function destroy($id)
     {
         //
-    }
-    public function struk($id) 
-    {
-        
-        $laporans = Pembayaran::find($id);
-        // return $laporans;
-        return view('laporan.struk', compact('laporans'));
-    }
-
-    public function exportpdf() 
-    {
-        
-        $laporans = Pembayaran::orderBy('created_at', 'desc')->get();
-        // return $laporans;
-        return view('laporan.print', compact('laporans'));
     }
 }

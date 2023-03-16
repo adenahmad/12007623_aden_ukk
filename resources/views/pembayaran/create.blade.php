@@ -55,12 +55,13 @@
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <strong>Nisn</strong>
-                    <select name="nisn" id="id_nis" class="form-control">
-                        <option selected >pilih Nisn Siswa</option>
+                    <strong>Nis</strong>
+                    {{-- <input type="text" name="nis" id="id_nis" class="form-control" > --}}
+                    <select name="nis" id="id_nis" class="form-control search">
+                        <option selected></option>
                         @foreach($siswa as $row)
-                            <option data-spp="{{ $row->id_spp }}" data-total="{{ $row->id_spp }}"  {{ $row->nisn == old('nisn') ? 'selected' : '' }} value="{{$row->nisn}}">
-                            {{ $row->nisn}}
+                            <option data-spp="{{ $row->id_spp }}" data-total="{{ $row->id_spp }}"  data-nama="{{ $row->nama }}"  {{ $row->nis == old('nis') ? 'selected' : '' }} value="{{$row->nis}}">
+                            {{ $row->nis}}
                             </option>
                         @endforeach
                     </select>
@@ -68,33 +69,27 @@
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
+                    <strong>Nama Siswa</strong>
+                    <input class="form-control" type="text" name="nama" id="siswa" readonly>          
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
                     <strong>Tanggal Bayar</strong>
-                    <input class="form-control" type="number" name="tgl_bayar" placeholder="Isi tanggal">          
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group">
-                    <strong>Bulan Bayar</strong>
-                    <input class="form-control" type="text" name="bulan_dibayar" placeholder="Isi bulan">          
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group">
-                    <strong>Tahun Bayar</strong>
-                    <input class="form-control" type="text" name="tahun_dibayar" placeholder="Isi tahun" >          
+                    <input class="form-control" type="date" name="tgl_bayar" >          
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Id Spp</strong>
-                    <input type="text" name="id_spp" id="spps" class="form-control">
+                    <input type="text" name="id_spp" id="spps" class="form-control" readonly>
                 </select>
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <strong>Tunggakan</strong>
-                    <input class="form-control" type="text" name="tunggakan" placeholder="Isi tunggakan" >          
+                    <strong>Bulan Bayar</strong>
+                    <input class="form-control" type="text" name="tunggakan_bulan" placeholder="Isi tunggakan" >          
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
@@ -114,6 +109,8 @@
     const id_nis = document.querySelector('#id_nis')
     const spps = document.querySelector('#spps')
     const cekbayar = document.querySelector('#cekbayar')
+    const siswa = document.querySelector('#siswa')
+
     id_nis.addEventListener('change', (e) => {
         const id_spp = e.target.options[e.target.selectedIndex].getAttribute('data-spp')
         spps.value = id_spp
@@ -121,6 +118,10 @@
     id_nis.addEventListener('change', (e) => {
         const id_spp = e.target.options[e.target.selectedIndex].getAttribute('data-total')
         cekbayar.value = id_spp
+    })
+    id_nis.addEventListener('change', (e) => {
+        const nama = e.target.options[e.target.selectedIndex].getAttribute('data-nama')
+        siswa.value = nama
     })
 </script>
 @endsection

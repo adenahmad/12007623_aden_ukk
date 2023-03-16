@@ -1,5 +1,6 @@
 @extends('layouts.master')
 @section('content')
+@if(Auth::user()->role !='Petugas')
 @if(Auth::user()->role !='Admin')
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
@@ -15,8 +16,7 @@
                 </div>
                 <!-- /.container-fluid -->
 @endif
-
-@if(Auth::user()->role !='Petugas')
+@endif
 @if(Auth::user()->role !='Siswa')
 <div class="container-fluid">
     <div class="row">
@@ -26,7 +26,7 @@
             </div>
             <hr>
             <div class="pull-right" style="float: left;">
-                <a class="btn btn-success" href="/exportexcel">Export  <i class="fa-sharp fa-solid fa-file-export"></i></a>
+                <a class="btn btn-primary" href="/exportpdf">Export  <i class="fa-sharp fa-solid fa-file-export"></i></a>
             </div>
         </div>
     </div>
@@ -40,6 +40,7 @@
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-primary">Data Laporan</h6>
+            <h6 class="m-0 font-weight-bold text-primary" style="float:right;">Bayaran bulan [ Januari - Juni] & [ July - Desember ]  <span id="waktu"></h6>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -48,11 +49,10 @@
                         <tr>
                             <th>No</th>
                             <th>Id Petugas</th>
-                            <th>Nisn</th>
+                            <th>Nis</th>
+                            <th>Nama</th>
                             <th>Tgl Bayar</th>
-                            <th>Bulan Dibayar</th>
-                            <th>Tahun Dibayar</th>
-                            <th>Tunggakan</th>
+                            <th>Bulan Bayar</th>
                             <th>Id Spp</th>
                             <th>Jumlah Bayar</th>
                             <th width="112px">Action</th>
@@ -63,27 +63,16 @@
                             <tr>
                                 <td>{{ ++$i }}</td>
                                 <td>{{ $laporan->id_petugas }}</td>
-                                <td>{{ $laporan->nisn }}</td>
+                                <td>{{ $laporan->nis }}</td>
+                                <td>{{ $laporan->nama }}</td>
                                 <td>{{ $laporan->tgl_bayar}}</td>
-                                <td>{{ $laporan->bulan_dibayar }}</td>
-                                <td>{{ $laporan->tahun_dibayar }}</td>
-                                <td>{{ $laporan->tunggakan}}</td>
-                                <td>{{ $laporan->id_spp }}</td>
-                                <td>{{ $laporan->jumlah_bayar }}</td>
+                                <td>Bulan {{ $laporan->tunggakan_bulan }}</td>
+                                <td>Rp.{{ $laporan->id_spp }}</td>
+                                <td>Rp.{{ $laporan->jumlah_dibayar }}</td>
                                 <td>
-                                    <a class="btn btn-primary" href="/struk">
+                                    <a class="btn btn-primary" href="{{ route('struk',$laporan->id) }}">
                                         <i class="fa-solid fa-file-invoice"> </i>
                                     </a>
-                                    {{-- <form action="{{ route('laporan.destroy',$laporan->id) }}" method="POST">
-                                        <a class="btn btn-primary" href="{{ route('laporan.edit',$laporan->id) }}">
-                                            <i class="fa-solid fa-pen"> </i>
-                                        </a>
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-danger">
-                                            <i class="fa-solid fa-trash-can"></i>
-                                        </button>
-                                    </form> --}}
                                 </td>
                             </tr>
                         @endforeach
@@ -100,7 +89,6 @@
 </script>
 {{-- {!! $pages->links() !!} --}}
 
-@endif
 @endif
 @endsection
 

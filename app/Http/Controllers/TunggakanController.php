@@ -54,7 +54,7 @@ class TunggakanController extends Controller
             $validatedData['sisa_tunggakan'] = $request->total_tunggakan;
             Tunggakan::create( $validatedData );
             return redirect()->route('tunggakan.index')
-                ->with('success', 'Berhasil Di edit !');
+                ->with('success', 'Berhasil Di Tambahkan !');
        
     }
     

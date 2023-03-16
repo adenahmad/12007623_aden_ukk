@@ -48,12 +48,11 @@ class PembayaranController extends Controller
             // dd($request->all());
         $request->validate([
             'id_petugas' => 'required',
-            'nisn' => 'required',
+            'nis' => 'required',
+            'nama' => 'required',
             'tgl_bayar' => 'required',
-            'bulan_dibayar' => 'required',
-            'tahun_dibayar' => 'required',
             'id_spp' => 'required',
-            'tunggakan' => 'required',
+            'tunggakan_bulan' => 'required',
             'jumlah_dibayar' => 'required',
         ]);
         
@@ -99,12 +98,11 @@ class PembayaranController extends Controller
     {
         $request->validate([
             'id_petugas' => 'required',
-            'nisn' => 'required',
+            'nis' => 'required',
+            'nama' => 'required',
             'tgl_bayar' => 'required',
-            'bulan_dibayar' => 'required',
-            'tahun_dibayar' => 'required',
             'id_spp' => 'required',
-            'tunggakan' => 'required',
+            'tunggakan_bulan' => 'required',
             'jumlah_dibayar' => 'required',
         ]);
 

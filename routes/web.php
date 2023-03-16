@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\HistoriController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KelasController;
 use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\PembayaranController;
@@ -29,7 +30,10 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
+
+Route::resource('home_master', HomeController::class);
 Route::resource('spp', SppController::class);
+Route::resource('tunggak', TunggakanController::class);
 Route::resource('kelas', KelasController::class);
 Route::resource('petugas', UserController::class);
 Route::resource('siswa', SiswaController::class);
@@ -40,6 +44,8 @@ Route::resource('histori', HistoriController::class);
 
 // route untuk logout
 Route::get('/logout', [App\Http\Controllers\Auth\LoginController::class, 'logout']);
+Route::get('/struk/{id}', [LaporanController::class, 'struk'])->middleware(['auth'])->name('struk');
+Route::get('/exportpdf', [LaporanController::class, 'exportpdf'])->middleware(['auth'])->name('exportpdf');
 Route::get('/spp/pdf', [SppController::class, 'createPDF']);
 
 require __DIR__.'/auth.php';
