@@ -52,9 +52,10 @@ class TunggakanController extends Controller
             ]);
             $validatedData['sisa_bulan'] = $request->bulan_tunggakan;
             $validatedData['sisa_tunggakan'] = $request->total_tunggakan;
-            Tunggakan::create($validatedData);
-        return redirect()->route('tunggakan.index')
-            ->with('success', 'Berhasil Menyimpan !');
+            Tunggakan::create( $validatedData );
+            return redirect()->route('tunggakan.index')
+                ->with('success', 'Berhasil Di edit !');
+       
     }
     
 
@@ -77,10 +78,10 @@ class TunggakanController extends Controller
      */
     public function edit(Tunggakan $tunggakan)
     {
-        $nama = Siswa::all();
+        $siswa = Siswa::all();
         // $kelas = Kelas::all();
 
-        return view('tunggakan.edit', compact('nama','tunggakan'));
+        return view('tunggakan.edit', compact('siswa','tunggakan'));
     }
 
     /**
@@ -99,12 +100,11 @@ class TunggakanController extends Controller
             'bulan_tunggakan' => ['required', 'string'],
             'total_tunggakan' => ['required', 'string'],
         ]);
-        $validatedData['sisa_bulan'] = $request->bulan;
+        $validatedData['sisa_bulan'] = $request->bulan_tunggakan;
         $validatedData['sisa_tunggakan'] = $request->total_tunggakan;
-        Tunggakan::Update( $validatedData );
-
-        return redirect()->route('tunggakan.index')
-            ->with('success', 'Berhasil Di Edit !');
+        Tunggakan::update($validatedData);
+    return redirect()->route('tunggakan.index')
+        ->with('success', 'Berhasil Menyimpan !');
     }
 
     /**

@@ -50,37 +50,26 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Nis</strong>
-                <select name="nis" id="" class="form-control">
-                    <select class="form-control"  name="nis" required>
-                        <option selected >{{$siswa->nis}}</option>
-                        @foreach($siswa as $row)
-                           <option {{ $row->id == old('nis', $tunggakan->nis) ? 'selected' : '' }} value="{{ $row->id }}">{{$row->nis}}</option>
-                        @endforeach
-                    
-                    </select>
+                <select name="id_siswa" id="id_siswa" class="form-control" >
+                    <option selected >{{$tunggakan->id_siswa}}</option>
+                    @foreach($siswa as $row)
+                        <option data-nama="{{ $row->nama  }}" data-kelas="{{ $row->id_kelas  }}" {{ $row->nis == old('id_siswa') ? 'selected' : '' }} value="{{$row->nis}}" >
+                        {{ $row->nis}}
+                        </option>
+                    @endforeach
+                </select>
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Nama</strong>
-                    <select class="form-control"  name="nama_siswa" required>
-                        <option selected >{{$siswa->nama_siswa}}</option>
-                        @foreach($siswa as $row)
-                           <option {{ $row->id == old('nama_siswa', $tunggakan->nama_siswa) ? 'selected' : '' }} value="{{ $row->id }}">{{$row->nama}}</option>
-                        @endforeach
-                    
-                    </select>
+                <input type="text" class="form-control" name="nama_siswa" id="nama_siswa" value="{{$tunggakan->nama_siswa}}" required>
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Kelas</strong>
-                <select name="nama_kelas" id="" class="form-control">
-                    <option selected >Pilih Kelas</option>
-                    <option value="X" @if ($kelas->nama_kelas == 'X') selected @endif> X</option>
-                    <option value="XI" @if ($kelas->nama_kelas == 'XI') selected @endif> XI</option>
-                    <option value="XII" @if ($kelas->nama_kelas == 'XII') selected @endif> XII</option>
-                </select>
+                <input type="text" class="form-control" name="nama_kelas" id="nama_kelas" value="{{$tunggakan->nama_kelas}}" required>
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
@@ -98,54 +87,22 @@
         <div class="col-xs-12 col-sm-12 col-md-12 text-center">
             <button type="submit" class="btn btn-primary">Update</button>
         </div> 
-{{--         
-        <div class="form-group row mb-4">
-            <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Nis</label>
-            <div class="col-sm-12 col-md-7">
-              <select class="form-control selectric"  name="id_siswa" required>
-               @foreach($siswa as $data)
-                  <option {{ $data->id == old('id_siswa', $tunggakan->id_siswa) ? 'selected' : '' }} value="{{ $data->id }}">{{$data->nis}}</option>
-                  @endforeach
-              </select>
-            </div>
-          </div>
-          <div class="form-group row mb-4">
-            <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Nama</label>
-            <div class="col-sm-12 col-md-7">
-              <select class="form-control selectric"  name="nama_siswa" required>
-               @foreach($siswa as $data)
-                  <option {{ $data->id == old('nama_siswa', $tunggakan->nama_siswa) ? 'selected' : '' }} value="{{ $data->id }}">{{$data->nama}}</option>
-                  @endforeach
-              </select>
-            </div>
-          </div>
-          <div class="form-group row mb-4">
-            <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Kelas</label>
-            <div class="col-sm-12 col-md-7">
-              <select class="form-control selectric"  name="nama_kelas" required>
-               @foreach($siswa as $data)
-                  <option {{ $data->id == old('siswa_id', $tunggakan->siswa_id) ? 'selected' : '' }} value="{{ $data->id }}">{{$data->kelas->nama_kelas}}</option>
-                  @endforeach
-              </select>
-            </div>
-          </div>
-
-           <div class="form-group row mb-4">
-            <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Bulan Tunggakan</label>
-            <div class="col-sm-12 col-md-7">
-              <input type="text" name="bulan_tunggakan" class="form-control" value="{{$tunggakan->bulan_tunggakan}}">
-            </div>
-          </div>
-           <div class="form-group row mb-4">
-            <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Total Tunggakan</label>
-            <div class="col-sm-12 col-md-7">
-              <input type="number" name="total_tunggakan" class="form-control" value="Rp.{{$tunggakan->total_tunggakan}}">
-            </div>
-          </div> --}}
     </div>
 </form>
 @endif
 @endif
+<script>
+    const id_siswa = document.querySelector('#id_siswa')
+    const nama_siswa = document.querySelector('#nama_siswa')
+    const nama_kelas = document.querySelector('#nama_kelas')
+
+    id_siswa.addEventListener('change', (e) => {
+        const nama = e.target.options[e.target.selectedIndex].getAttribute('data-nama')
+        nama_siswa.value = nama
+        const id_kelas = e.target.options[e.target.selectedIndex].getAttribute('data-kelas')
+        nama_kelas.value = id_kelas
+    })
+</script>
 @endsection
 
 @section('title')

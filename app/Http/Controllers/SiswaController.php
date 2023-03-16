@@ -95,7 +95,7 @@ class SiswaController extends Controller
         $tahun = Spp::all();
         // $spp = spp::find($id);
         $spp = Spp::all();
-        return view('siswa.edit', compact('kelas','spp','siswa'));
+        return view('siswa.edit', compact('tahun','kelas','spp','siswa'));
      }
     // {
     //     $siswa = Siswa::find($id);

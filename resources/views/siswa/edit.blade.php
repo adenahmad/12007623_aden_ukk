@@ -81,10 +81,10 @@
             <div class="form-group">
                 <strong>Tahun Angkatan</strong>
                 {{-- <input class="form-control" type="number" name="id_spp" placeholder="Isi id spp">           --}}
-                <select name="tahun" id="" class="form-control" >
+                <select name="tahun" id="tahun" class="form-control" >
                     <option selected >{{$siswa->tahun}}</option>
-                    @foreach($spp as $row)
-                        <option {{ $row->tahun == old('id_spp', $siswa->tahun)  ? 'selected' : '' }} value="{{$row->tahun}}">
+                    @foreach($tahun as $row)
+                        <option data-tahun="{{ $row->nominal  }}" {{ $row->tahun == old('tahun') ? 'selected' : '' }} value="{{$row->tahun}}" >
                         {{ $row->tahun}}
                         </option>
                     @endforeach
@@ -94,14 +94,7 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Id Spp</strong>
-                {{-- <input class="form-control" type="number" name="id_spp" placeholder="Isi id spp">           --}}
-                <select name="id_spp" id="" class="form-control" >
-                    <option selected >{{$siswa->id_spp}}</option>
-                    @foreach($spp as $row)
-                        <option {{ $row->nominal == old('id_spp', $siswa->nominal)  ? 'selected' : '' }} value="{{$row->nominal}}">
-                        {{ $row->nominal}}
-                        </option>
-                    @endforeach
+                <input type="text" name="id_spp" id="id_spp" class="form-control"value="{{$siswa->id_spp}}" >
                 </select>
             </div>
         </div>
@@ -126,6 +119,15 @@
 </form>
 @endif
 @endif
+<script>
+    const tahun = document.querySelector('#tahun')
+    const id_spp = document.querySelector('#id_spp')
+
+    tahun.addEventListener('change', (e) => {
+        const nominal = e.target.options[e.target.selectedIndex].getAttribute('data-tahun')
+        id_spp.value = nominal
+    })
+</script>
 @endsection
 
 @section('title')

@@ -21,6 +21,14 @@ class SppController extends Controller
         return view('spp.index', compact('spps'))
             ->with('i', (request()->input('spp', 1) - 1) * 5);
     }
+    // $count = DB::table('tbl_karyawan')->count();
+
+    // //eloquent
+    // $count = ModelKaryawan::all()->count();
+
+    // atau 
+
+    // $count = ModelKaryawan::count();
     /**
      * Show the form for creating a new resource.
      *

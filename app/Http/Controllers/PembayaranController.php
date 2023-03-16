@@ -84,8 +84,8 @@ class PembayaranController extends Controller
     {
         // $petugas = User::all();
         // $spp = spp::find($id);
-        $spp = Spp::all();
-        return view('pembayaran.edit', compact('spp','pembayaran'));
+        $siswa = Siswa::all();
+        return view('pembayaran.edit', compact('siswa','pembayaran'));
     }
 
     /**

@@ -87,28 +87,12 @@
                         </option>
                     @endforeach
                 </select>
-                {{-- <select name="tahun" id="" class="form-control">
-                    <option selected >pilih tahun angkatan</option>
-                    @foreach($tahun as $row)
-                        <option {{ $row->tahun == old('tahun') ? 'selected' : '' }} value="{{$row->tahun}}">
-                        {{ $row->tahun}}
-                        </option>
-                    @endforeach
-                </select> --}}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Id Spp</strong>
                 <input type="text" name="id_spp" id="id_spp" class="form-control">
-                {{-- <select name="id_spp" id="" class="form-control">
-                    <option selected >pilih nominal</option>
-                    @foreach($spp as $row)
-                        <option {{ $row->nominal == old('id_spp') ? 'selected' : '' }} value="{{$row->nominal}}">
-                        {{ $row->nominal}}
-                        </option>
-                    @endforeach
-                </select> --}}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">

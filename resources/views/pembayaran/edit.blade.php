@@ -56,7 +56,19 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Nisn</strong>
-                <input class="form-control" type="text" name="nisn"  value="{{$pembayaran->nisn}}">
+                <select name="nisn" id="id_nis" class="form-control">
+                    <option selected >{{$pembayaran->id_spp}}</option>
+                    @foreach($siswa as $row)
+                        <option data-spp="{{ $row->id_spp }}" data-total="{{ $row->id_spp }}"  {{ $row->nisn == old('nisn') ? 'selected' : '' }} value="{{$row->nisn}}">
+                        {{ $row->nisn}}
+                        </option>
+                    @endforeach
+                    {{-- @foreach($spp as $row)
+                        <option {{ $row->id_spp == old('id_spp', $pembayaran->id_spp)  ? 'selected' : '' }} value="{{$row->nisn}}">
+                        {{ $row->nisn}}
+                        </option>
+                    @endforeach --}}
+                </select>
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
@@ -80,14 +92,7 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Id Spp</strong>
-                <select name="id_spp" id="" class="form-control">
-                    <option selected >{{$pembayaran->id_spp}}</option>
-                    @foreach($spp as $row)
-                        <option {{ $row->id_spp == old('id_spp', $pembayaran->id_spp)  ? 'selected' : '' }} value="{{$row->nominal}}">
-                        {{ $row->nominal}}
-                        </option>
-                    @endforeach
-                </select>
+                <input type="text" name="id_spp" id="spps" class="form-control"  value="{{$pembayaran->id_spp}}">
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
@@ -99,7 +104,7 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Jumlah Bayar</strong>
-                <input class="form-control" type="text" name="jumlah_dibayar"  value="{{$pembayaran->jumlah_dibayar}}">          
+                <input class="form-control" type="text" name="jumlah_dibayar" id="cekbayar"  value="{{$pembayaran->jumlah_dibayar}}">          
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12 text-center">
@@ -110,6 +115,19 @@
 </form>
 @endif
 @endif
+<script>
+    const id_nis = document.querySelector('#id_nis')
+    const spps = document.querySelector('#spps')
+    const cekbayar = document.querySelector('#cekbayar')
+    id_nis.addEventListener('change', (e) => {
+        const id_spp = e.target.options[e.target.selectedIndex].getAttribute('data-spp')
+        spps.value = id_spp
+    })
+    id_nis.addEventListener('change', (e) => {
+        const id_spp = e.target.options[e.target.selectedIndex].getAttribute('data-total')
+        cekbayar.value = id_spp
+    })
+</script>
 @endsection
 
 @section('title')
